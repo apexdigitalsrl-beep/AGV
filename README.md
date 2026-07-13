@@ -63,3 +63,23 @@ El contacto (WhatsApp, email, redes) y los dos primeros casos de éxito (Barrera
 npm run build
 npm run lint
 ```
+
+## Deploy en Hostinger (Node.js App / Passenger)
+
+Este proyecto usa Server Actions, `proxy.ts` (middleware con CSP por request) y llamadas a Supabase en el servidor — **no es un sitio estático**, necesita un proceso Node corriendo. No sirve subir el repo crudo a un hosting compartido PHP/HTML clásico (tira 403).
+
+Configuración en hPanel → **Node.js App**:
+
+1. **Versión de Node**: 22 (LTS). Next.js 16 requiere mínimo Node 20.9 — Node 18 no arranca.
+2. **Application root**: la carpeta donde se pullea este repo.
+3. **Application startup file**: `.next/standalone/server.js` (se genera en el build, no está en git).
+4. Después de cada `git pull`, correr en esa carpeta:
+   ```bash
+   npm ci
+   npm run build
+   ```
+   `npm run build` corre `next build` y automáticamente copia `public/` y `.next/static` dentro de `.next/standalone/` (script `postbuild`, ver `scripts/copy-standalone-assets.js`) — sin ese paso el sitio levanta sin estilos ni imágenes.
+5. Reiniciar la app Node desde hPanel para que Passenger levante el nuevo `server.js`.
+6. Variables de entorno (`NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, etc.) se cargan en la sección de env vars del Node.js App, no en `.env.local` (ese archivo no se commitea).
+
+`output: "standalone"` en `next.config.ts` es lo que hace esto posible: empaqueta un server mínimo con solo los `node_modules` necesarios para producción, en vez de depender de `next start` (que Passenger no invoca de forma nativa).

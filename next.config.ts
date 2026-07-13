@@ -12,6 +12,10 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Standalone output bundles a minimal server + only the node_modules
+  // actually needed at runtime — required for Hostinger's Passenger-based
+  // Node.js App hosting instead of Vercel's serverless build.
+  output: "standalone",
   async headers() {
     return [
       {
