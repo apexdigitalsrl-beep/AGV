@@ -1,5 +1,6 @@
 import { Clock3, Mail, MapPin, MessageCircle } from "lucide-react";
 
+import { LiquidEtherBackdrop } from "@/components/backgrounds/SectionBackdrops";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { GlassCard } from "@/components/shared/GlassCard";
 import { MagneticButton } from "@/components/shared/MagneticButton";
@@ -20,8 +21,9 @@ const contactDetails = [
 
 export function Contact() {
   return (
-    <section id="contacto" className="scroll-mt-24 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section id="contacto" className="relative scroll-mt-24 overflow-hidden py-24 sm:py-32">
+      <LiquidEtherBackdrop />
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <SectionHeading
           eyebrow="Contacto"
           title="Contanos sobre tu negocio y empecemos"

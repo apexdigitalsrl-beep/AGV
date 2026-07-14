@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 
+import { RibbonsBackdrop } from "@/components/backgrounds/SectionBackdrops";
 import { GlassCard } from "@/components/shared/GlassCard";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -8,8 +9,9 @@ import { featuredProjects } from "@/lib/content";
 
 export function FeaturedProjects() {
   return (
-    <section id="casos" className="scroll-mt-24 bg-ink-900/30 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section id="casos" className="relative scroll-mt-24 overflow-hidden bg-ink-900/30 py-24 sm:py-32">
+      <RibbonsBackdrop />
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <SectionHeading
           eyebrow="Casos reales"
           title="Nada de maquetas: proyectos que están en producción"

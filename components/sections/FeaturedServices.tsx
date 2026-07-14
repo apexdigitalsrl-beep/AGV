@@ -1,5 +1,6 @@
 import { Check } from "lucide-react";
 
+import { LightfallBackdrop } from "@/components/backgrounds/SectionBackdrops";
 import { GlassCard } from "@/components/shared/GlassCard";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -8,8 +9,9 @@ import { cn } from "@/lib/utils";
 
 export function FeaturedServices() {
   return (
-    <section id="servicios" className="scroll-mt-24 bg-ink-900/30 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section id="servicios" className="relative scroll-mt-24 overflow-hidden bg-ink-900/30 py-24 sm:py-32">
+      <LightfallBackdrop />
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <SectionHeading
           eyebrow="Servicios"
           title="Todo lo que necesitás para operar mejor, en un solo equipo"

@@ -1,13 +1,16 @@
 import { Gauge, ShieldCheck, Sparkles, Zap } from "lucide-react";
 
+import { CountUp } from "@/components/shared/CountUp";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { featuredProjects } from "@/lib/content";
 
+// Real Lighthouse ranges across shipped projects — the trailing bound
+// counts up on scroll, the leading bound stays static text.
 const realMetrics = [
-  { label: "Performance Lighthouse", value: "91–100", icon: Gauge },
-  { label: "SEO", value: "100", icon: Sparkles },
-  { label: "Accesibilidad", value: "95–97", icon: ShieldCheck },
-  { label: "LCP", value: "1.3s–2.2s", icon: Zap },
+  { label: "Performance Lighthouse", prefix: "91–", to: 100, decimals: 0, suffix: "", icon: Gauge },
+  { label: "SEO", prefix: "", to: 100, decimals: 0, suffix: "", icon: Sparkles },
+  { label: "Accesibilidad", prefix: "95–", to: 97, decimals: 0, suffix: "", icon: ShieldCheck },
+  { label: "LCP", prefix: "1.3s–", to: 2.2, decimals: 1, suffix: "s", icon: Zap },
 ];
 
 const provenClients = featuredProjects.filter((project) => !project.isComingSoon);
@@ -26,7 +29,14 @@ export function SocialProof() {
           {realMetrics.map((metric) => (
             <RevealOnScroll key={metric.label} className="flex flex-col items-center gap-2 text-center">
               <metric.icon className="size-5 text-brand-400" />
-              <p className="font-display text-2xl font-semibold text-white sm:text-3xl">{metric.value}</p>
+              <p className="font-display text-2xl font-semibold text-white sm:text-3xl">
+                <CountUp
+                  prefix={metric.prefix}
+                  to={metric.to}
+                  suffix={metric.suffix}
+                  decimals={metric.decimals}
+                />
+              </p>
               <p className="text-xs uppercase tracking-wide text-ink-400">{metric.label}</p>
             </RevealOnScroll>
           ))}

@@ -2,10 +2,11 @@
 // Static assets and public/ are not included by design (Next docs) and
 // must be copied in manually after every build — this runs automatically
 // via the `postbuild` script so `npm run build` alone is deploy-ready.
-const { cpSync, existsSync } = require("node:fs");
-const path = require("node:path");
+import { cpSync, existsSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const root = path.join(__dirname, "..");
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const standaloneDir = path.join(root, ".next", "standalone");
 
 if (!existsSync(standaloneDir)) {
