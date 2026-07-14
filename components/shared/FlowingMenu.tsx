@@ -31,12 +31,12 @@ function FlowingMenuItem({ link, text, onClick, speed }: FlowingMenuItem & { spe
   const marqueeRef = useRef<HTMLDivElement>(null);
   const marqueeInnerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<gsap.core.Tween | null>(null);
-  const [repetitions, setRepetitions] = useState(6);
+  const [repetitions, setRepetitions] = useState(4);
   const [reducedMotion, setReducedMotion] = useState(
     () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
 
-  const animationDefaults = { duration: 0.45, ease: "expo" as const };
+  const animationDefaults = { duration: 0.6, ease: "expo" as const };
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -45,10 +45,10 @@ function FlowingMenuItem({ link, text, onClick, speed }: FlowingMenuItem & { spe
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  const findClosestEdge = (mouseX: number, width: number): "left" | "right" => {
-    const leftDist = Math.abs(mouseX);
-    const rightDist = Math.abs(width - mouseX);
-    return leftDist < rightDist ? "left" : "right";
+  const findClosestEdge = (mouseY: number, height: number): "top" | "bottom" => {
+    const topDist = Math.abs(mouseY);
+    const bottomDist = Math.abs(height - mouseY);
+    return topDist < bottomDist ? "top" : "bottom";
   };
 
   useEffect(() => {
@@ -58,8 +58,8 @@ function FlowingMenuItem({ link, text, onClick, speed }: FlowingMenuItem & { spe
       if (!part) return;
       const contentWidth = part.offsetWidth;
       if (!contentWidth) return;
-      const needed = Math.ceil(400 / contentWidth) + 2;
-      setRepetitions(Math.max(6, needed));
+      const needed = Math.ceil(600 / contentWidth) + 2;
+      setRepetitions(Math.max(4, needed));
     };
 
     calculateRepetitions();
@@ -96,22 +96,22 @@ function FlowingMenuItem({ link, text, onClick, speed }: FlowingMenuItem & { spe
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (reducedMotion || !itemRef.current || !marqueeRef.current || !marqueeInnerRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const edge = findClosestEdge(x, rect.width);
+    const y = e.clientY - rect.top;
+    const edge = findClosestEdge(y, rect.height);
 
     gsap
       .timeline({ defaults: animationDefaults })
-      .set(marqueeRef.current, { x: edge === "left" ? "-101%" : "101%" }, 0)
-      .to(marqueeRef.current, { x: "0%" }, 0);
+      .set(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" }, 0)
+      .to(marqueeRef.current, { y: "0%" }, 0);
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (reducedMotion || !itemRef.current || !marqueeRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const edge = findClosestEdge(x, rect.width);
+    const y = e.clientY - rect.top;
+    const edge = findClosestEdge(y, rect.height);
 
-    gsap.to(marqueeRef.current, { x: edge === "left" ? "-101%" : "101%", ...animationDefaults });
+    gsap.to(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%", ...animationDefaults });
   };
 
   return (

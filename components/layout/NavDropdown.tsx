@@ -1,13 +1,14 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { X } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { useEffect, useRef } from "react";
 
+import { FlowingMenu } from "@/components/shared/FlowingMenu";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { buildWhatsAppUrl, navLinks } from "@/lib/site-config";
 
-type MobileMenuProps = {
+type NavDropdownProps = {
   isOpen: boolean;
   onClose: () => void;
 };
@@ -15,9 +16,8 @@ type MobileMenuProps = {
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+export function NavDropdown({ isOpen, onClose }: NavDropdownProps) {
   const panelRef = useRef<HTMLDivElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -25,7 +25,6 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
     document.body.style.overflow = "hidden";
     previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
-    closeButtonRef.current?.focus();
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -61,61 +60,44 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   return (
     <AnimatePresence>
       {isOpen ? (
-        <div
-          id="mobile-menu"
-          className="fixed inset-0 z-[60] lg:hidden"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menú"
-        >
+        <div id="nav-dropdown" role="dialog" aria-modal="true" aria-label="Menú">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={onClose}
-            className="absolute inset-0 bg-ink-950/80 backdrop-blur-sm"
+            className="fixed inset-x-0 top-[72px] bottom-0 z-[55] bg-ink-950/80 backdrop-blur-sm"
           />
           <motion.div
             ref={panelRef}
-            initial={{ x: "-100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "-100%" }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] as const }}
-            className="absolute inset-y-0 left-0 flex w-[86%] max-w-sm flex-col border-r border-white/[0.06] bg-ink-950 shadow-2xl"
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
+            style={{ transformOrigin: "top" }}
+            className="glass-surface fixed inset-x-0 top-[72px] z-[60] max-h-[calc(100vh-72px)] overflow-y-auto rounded-b-3xl border-b border-white/[0.06] shadow-2xl"
           >
-            <div className="flex items-center justify-end px-6 pt-6">
-              <button
-                ref={closeButtonRef}
-                type="button"
-                onClick={onClose}
-                aria-label="Cerrar menú"
-                className="grid size-11 place-items-center rounded-md text-ink-300 transition-colors hover:text-white"
-              >
-                <X className="size-6" />
-              </button>
-            </div>
-            <nav aria-label="Navegación móvil" className="mt-6 flex flex-1 flex-col gap-1 px-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={onClose}
-                  className="border-b border-white/[0.05] py-3 font-display text-xl font-medium text-white transition-colors hover:text-brand-400"
+            <div className="mx-auto max-w-7xl px-6 pb-8 pt-2 lg:px-8">
+              <FlowingMenu
+                items={navLinks.map((link) => ({
+                  link: link.href,
+                  text: link.label,
+                  onClick: onClose,
+                }))}
+              />
+
+              <div className="mt-8">
+                <MagneticButton
+                  href={buildWhatsAppUrl()}
+                  external
+                  variant="primary"
+                  className="w-full justify-center text-base"
+                  icon={<MessageCircle className="size-4" />}
                 >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-            <div className="px-6 pb-10 pt-6">
-              <MagneticButton
-                href={buildWhatsAppUrl()}
-                external
-                variant="primary"
-                className="w-full justify-center text-base"
-              >
-                Solicitar diagnóstico gratis
-              </MagneticButton>
+                  Solicitar diagnóstico gratis
+                </MagneticButton>
+              </div>
             </div>
           </motion.div>
         </div>

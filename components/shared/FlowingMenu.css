@@ -1,32 +1,34 @@
 .flowing-menu {
   display: flex;
-  align-items: stretch;
-  height: 100%;
+  flex-direction: column;
+  width: 100%;
 }
 
 .flowing-menu__item {
   position: relative;
   display: flex;
   overflow: hidden;
+  border-top: 1px solid rgb(255 255 255 / 6%);
+}
+
+.flowing-menu__item:first-child {
+  border-top: none;
 }
 
 .flowing-menu__link {
   position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
-  height: 100%;
-  padding: 0 1.1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #a7b0ba;
+  width: 100%;
+  padding: 1.5rem 0.5rem;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  font-weight: 600;
+  color: #ffffff;
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.2s ease;
-}
-
-.flowing-menu__item:hover .flowing-menu__link,
-.flowing-menu__link:focus-visible {
-  color: #ffffff;
 }
 
 .flowing-menu__link:focus-visible {
@@ -38,11 +40,11 @@
 .flowing-menu__marquee {
   position: absolute;
   inset: 0;
+  z-index: 1;
   overflow: hidden;
   pointer-events: none;
-  transform: translateX(101%);
+  transform: translateY(101%);
   background: linear-gradient(120deg, #2e6fe0, #22d3ee);
-  border-radius: 8px;
 }
 
 .flowing-menu__marquee-inner-wrap {
@@ -63,14 +65,15 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  padding: 0 1.1rem;
+  padding: 0 1.5rem;
 }
 
 .flowing-menu__part span {
   white-space: nowrap;
-  font-size: 0.875rem;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
   font-weight: 600;
   color: #0a0e14;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
 }
