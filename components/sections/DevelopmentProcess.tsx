@@ -1,11 +1,13 @@
+import { LaserFlowBackdrop } from "@/components/backgrounds/SectionBackdrops";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { processSteps } from "@/lib/content";
 
 export function DevelopmentProcess() {
   return (
-    <section className="py-24 sm:py-32">
-      <div className="mx-auto max-w-5xl px-6 lg:px-8">
+    <section className="relative overflow-hidden py-24 sm:py-32">
+      <LaserFlowBackdrop />
+      <div className="relative mx-auto max-w-5xl px-6 lg:px-8">
         <SectionHeading
           eyebrow="Cómo trabajamos"
           title="Un proceso claro, de punta a punta"

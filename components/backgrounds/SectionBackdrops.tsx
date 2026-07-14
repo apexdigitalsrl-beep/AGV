@@ -11,6 +11,7 @@ const Lightfall = dynamic(() => import("@/components/backgrounds/Lightfall"), { 
 const LightPillar = dynamic(() => import("@/components/backgrounds/LightPillar"), { ssr: false });
 const LiquidEther = dynamic(() => import("@/components/backgrounds/LiquidEther"), { ssr: false });
 const Ribbons = dynamic(() => import("@/components/backgrounds/Ribbons"), { ssr: false });
+const LaserFlow = dynamic(() => import("@/components/backgrounds/LaserFlow"), { ssr: false });
 
 /**
  * Brand-tuned backdrops, one per landing zone. All colors come from the AGV
@@ -107,6 +108,15 @@ export function RibbonsBackdrop() {
         speedMultiplier={0.55}
         enableFade
       />
+    </BackgroundGate>
+  );
+}
+
+/** Proceso — soft vertical beam behind the step timeline, kept subdued so the step copy stays fully readable. */
+export function LaserFlowBackdrop() {
+  return (
+    <BackgroundGate>
+      <LaserFlow color="#4a84ee" wispDensity={0.6} wispIntensity={2.5} fogIntensity={0.2} flowSpeed={0.25} decay={1.3} />
     </BackgroundGate>
   );
 }

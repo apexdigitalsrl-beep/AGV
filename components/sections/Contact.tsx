@@ -2,7 +2,7 @@ import { Clock3, Mail, MapPin, MessageCircle } from "lucide-react";
 
 import { LiquidEtherBackdrop } from "@/components/backgrounds/SectionBackdrops";
 import { ContactForm } from "@/components/forms/ContactForm";
-import { GlassCard } from "@/components/shared/GlassCard";
+import { BorderGlow } from "@/components/shared/BorderGlow";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -68,9 +68,16 @@ export function Contact() {
           </RevealOnScroll>
 
           <RevealOnScroll delay={0.1}>
-            <GlassCard>
+            <BorderGlow
+              backgroundColor="#10151d"
+              borderRadius={24}
+              glowColor="212 80% 75%"
+              colors={["#2e6fe0", "#22d3ee", "#6f9ef5"]}
+              glowIntensity={0.8}
+              className="p-8"
+            >
               <ContactForm />
-            </GlassCard>
+            </BorderGlow>
           </RevealOnScroll>
         </div>
       </div>
