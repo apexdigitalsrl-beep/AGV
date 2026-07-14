@@ -1,5 +1,6 @@
 import { Quote } from "lucide-react";
 
+import { HyperspeedBackdrop } from "@/components/backgrounds/SectionBackdrops";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 
@@ -7,8 +8,11 @@ const placeholderRoles = ["Cliente de gastronomía", "Cliente del rubro automoto
 
 export function Testimonials() {
   return (
-    <section className="py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="relative overflow-hidden py-24 sm:py-32">
+      <div className="absolute inset-0 opacity-40">
+        <HyperspeedBackdrop />
+      </div>
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <SectionHeading
           eyebrow="Testimonios"
           title="Todavía estamos construyendo esta sección"

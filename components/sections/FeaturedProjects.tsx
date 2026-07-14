@@ -3,9 +3,12 @@ import Image from "next/image";
 
 import { RibbonsBackdrop } from "@/components/backgrounds/SectionBackdrops";
 import { GlassCard } from "@/components/shared/GlassCard";
+import { GridDistortion } from "@/components/shared/GridDistortion";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { featuredProjects } from "@/lib/content";
+
+const INTERACTIVE_DISTORTION_SLUG = "barreras-neumaticos";
 
 export function FeaturedProjects() {
   return (
@@ -23,17 +26,24 @@ export function FeaturedProjects() {
             <RevealOnScroll key={project.slug} delay={index * 0.06}>
               <GlassCard className="flex h-full flex-col overflow-hidden !p-0">
                 <div className="relative aspect-[16/10] w-full">
-                  <Image
-                    src={project.image}
-                    alt={project.imageAlt}
-                    fill
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    className={
-                      project.isComingSoon
-                        ? "object-cover object-top opacity-30 blur-[2px] grayscale"
-                        : "object-cover object-top"
-                    }
-                  />
+                  {project.slug === INTERACTIVE_DISTORTION_SLUG ? (
+                    <>
+                      <GridDistortion imageSrc={project.image} grid={20} mouse={0.15} strength={0.1} relaxation={0.92} />
+                      <span className="sr-only">{project.imageAlt}</span>
+                    </>
+                  ) : (
+                    <Image
+                      src={project.image}
+                      alt={project.imageAlt}
+                      fill
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      className={
+                        project.isComingSoon
+                          ? "object-cover object-top opacity-30 blur-[2px] grayscale"
+                          : "object-cover object-top"
+                      }
+                    />
+                  )}
                   {project.isComingSoon ? (
                     <div className="absolute inset-0 grid place-items-center bg-ink-950/50">
                       <span className="rounded-full border border-white/15 bg-ink-950/80 px-4 py-1.5 text-sm font-medium text-white">

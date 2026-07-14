@@ -12,6 +12,7 @@ const LightPillar = dynamic(() => import("@/components/backgrounds/LightPillar")
 const LiquidEther = dynamic(() => import("@/components/backgrounds/LiquidEther"), { ssr: false });
 const Ribbons = dynamic(() => import("@/components/backgrounds/Ribbons"), { ssr: false });
 const LaserFlow = dynamic(() => import("@/components/backgrounds/LaserFlow"), { ssr: false });
+const Hyperspeed = dynamic(() => import("@/components/backgrounds/Hyperspeed"), { ssr: false });
 
 /**
  * Brand-tuned backdrops, one per landing zone. All colors come from the AGV
@@ -117,6 +118,39 @@ export function LaserFlowBackdrop() {
   return (
     <BackgroundGate>
       <LaserFlow color="#4a84ee" wispDensity={0.6} wispIntensity={2.5} fogIntensity={0.2} flowSpeed={0.25} decay={1.3} />
+    </BackgroundGate>
+  );
+}
+
+/** Testimonios — quiet light streams behind the placeholder cards, dimmed further so the "still building this" copy stays the focus. */
+export function HyperspeedBackdrop() {
+  return (
+    <BackgroundGate>
+      <Hyperspeed
+        effectOptions={{
+          distortion: "turbulentDistortion",
+          length: 400,
+          roadWidth: 9,
+          islandWidth: 2,
+          lanesPerRoad: 2,
+          fov: 90,
+          fovSpeedUp: 110,
+          speedUp: 1.5,
+          carLightsFade: 0.5,
+          totalSideLightSticks: 12,
+          lightPairsPerRoadWay: 18,
+          colors: {
+            roadColor: 0x0a0e14,
+            islandColor: 0x0a0e14,
+            background: 0x0a0e14,
+            shoulderLines: 0x131c2b,
+            brokenLines: 0x131c2b,
+            leftCars: [0x4a84ee, 0x6f9ef5, 0x94b6f8],
+            rightCars: [0x22d3ee, 0x2e6fe0, 0x6f9ef5],
+            sticks: 0x22d3ee,
+          },
+        }}
+      />
     </BackgroundGate>
   );
 }
