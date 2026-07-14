@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { MotionConfig } from "motion/react";
-import { Bricolage_Grotesque, Manrope } from "next/font/google";
+import { Bricolage_Grotesque, Manrope, Roboto_Flex } from "next/font/google";
 import { headers } from "next/headers";
 
 import { Footer } from "@/components/layout/Footer";
@@ -21,6 +21,13 @@ const bricolageGrotesque = Bricolage_Grotesque({
 const manrope = Manrope({
   variable: "--font-body",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const robotoFlex = Roboto_Flex({
+  variable: "--font-pressure",
+  subsets: ["latin"],
+  axes: ["wdth"],
   display: "swap",
 });
 
@@ -77,7 +84,7 @@ export default async function RootLayout({
   const nonce = (await headers()).get("x-nonce") ?? undefined;
 
   return (
-    <html lang="es" className={`${bricolageGrotesque.variable} ${manrope.variable} h-full`}>
+    <html lang="es" className={`${bricolageGrotesque.variable} ${manrope.variable} ${robotoFlex.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-background font-body text-foreground antialiased">
         <script
           type="application/ld+json"

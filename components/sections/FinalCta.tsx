@@ -3,6 +3,7 @@ import { MessageCircle } from "lucide-react";
 import { LightPillarBackdrop } from "@/components/backgrounds/SectionBackdrops";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
+import { TextPressure } from "@/components/shared/TextPressure";
 import { buildWhatsAppUrl } from "@/lib/site-config";
 
 export function FinalCta() {
@@ -11,9 +12,18 @@ export function FinalCta() {
       <LightPillarBackdrop />
       <div className="relative mx-auto max-w-3xl px-6 text-center lg:px-8">
         <RevealOnScroll>
-          <h2 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            ¿Hablamos de tu próximo proyecto?
-          </h2>
+          <div className="mx-auto h-20 max-w-xs sm:h-24 sm:max-w-sm">
+            <TextPressure
+              text="¿Hablamos?"
+              tag="h2"
+              textColor="#ffffff"
+              minFontSize={32}
+              italic={false}
+              alpha={false}
+              stroke={false}
+            />
+          </div>
+          <p className="mt-6 text-lg text-ink-300 sm:text-xl">De tu próximo proyecto de software.</p>
           <p className="mt-4 text-lg text-ink-300">
             Agendá un diagnóstico gratuito por WhatsApp. Sin compromiso, sin vueltas.
           </p>

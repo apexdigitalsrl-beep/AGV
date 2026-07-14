@@ -4,12 +4,25 @@ import { motion } from "motion/react";
 
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { SectionHeading } from "@/components/shared/SectionHeading";
+import { TrueFocus } from "@/components/shared/TrueFocus";
 import { whyReasons } from "@/lib/content";
 
 export function WhyAgv() {
   return (
     <section className="bg-ink-900/30 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <RevealOnScroll className="mb-10 flex justify-center">
+          <TrueFocus
+            sentence="Rápido Cercano Preciso"
+            manualMode={false}
+            blurAmount={4}
+            borderColor="#6f9ef5"
+            glowColor="rgba(111, 158, 245, 0.6)"
+            animationDuration={0.5}
+            pauseBetweenAnimations={1.2}
+          />
+        </RevealOnScroll>
+
         <SectionHeading
           eyebrow="Por qué AGV Solutions"
           title="¿Por qué confiar en nosotros?"

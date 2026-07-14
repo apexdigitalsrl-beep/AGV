@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import { Logo } from "@/components/layout/Logo";
 import { MobileMenu } from "@/components/layout/MobileMenu";
+import { FlowingMenu } from "@/components/shared/FlowingMenu";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { cn } from "@/lib/utils";
 import { buildWhatsAppUrl, navLinks } from "@/lib/site-config";
@@ -30,18 +31,9 @@ export function Header() {
         <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-6 lg:px-8">
           <Logo />
 
-          <nav aria-label="Navegación principal" className="hidden items-center gap-8 lg:flex">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="group relative text-sm font-medium text-ink-300 transition-colors hover:text-white"
-              >
-                {link.label}
-                <span className="absolute -bottom-1.5 left-1/2 h-px w-0 -translate-x-1/2 bg-brand-400 transition-all duration-300 ease-expressive group-hover:w-full" />
-              </a>
-            ))}
-          </nav>
+          <div className="hidden h-11 lg:block">
+            <FlowingMenu items={navLinks.map((link) => ({ link: link.href, text: link.label }))} />
+          </div>
 
           <div className="flex items-center gap-3">
             <MagneticButton
