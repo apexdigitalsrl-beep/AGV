@@ -18,6 +18,7 @@ export function RevealOnScroll({ children, className, delay = 0, y = 28 }: Revea
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] as const }}
+      suppressHydrationWarning
     >
       {children}
     </motion.div>
