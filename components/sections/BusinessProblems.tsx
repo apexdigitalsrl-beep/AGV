@@ -1,4 +1,7 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 
 import { GlassCard } from "@/components/shared/GlassCard";
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
@@ -18,15 +21,17 @@ export function BusinessProblems() {
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {businessProblems.map((problem, index) => (
             <RevealOnScroll key={problem.title} delay={index * 0.06}>
-              <GlassCard className="h-full">
-                <problem.icon className="size-8 text-brand-400" />
-                <h3 className="mt-5 font-display text-lg font-semibold text-white">{problem.title}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-ink-300">{problem.description}</p>
-                <p className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-brand-400">
-                  {problem.solutionLabel}
-                  <ArrowRight className="size-3.5" />
-                </p>
-              </GlassCard>
+              <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.3, ease: "easeOut" }}>
+                <GlassCard className="h-full">
+                  <problem.icon className="size-8 text-brand-400" />
+                  <h3 className="mt-5 font-display text-lg font-semibold text-white">{problem.title}</h3>
+                  <p className="mt-2.5 text-sm leading-relaxed text-ink-300">{problem.description}</p>
+                  <p className="mt-5 inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-wide text-brand-400">
+                    {problem.solutionLabel}
+                    <ArrowRight className="size-3.5" />
+                  </p>
+                </GlassCard>
+              </motion.div>
             </RevealOnScroll>
           ))}
         </div>

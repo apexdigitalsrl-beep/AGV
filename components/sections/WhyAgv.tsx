@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "motion/react";
+
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { whyReasons } from "@/lib/content";
@@ -14,12 +18,14 @@ export function WhyAgv() {
 
         <div className="mt-14 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {whyReasons.map((reason, index) => (
-            <RevealOnScroll key={reason.title} delay={index * 0.05} className="flex gap-4">
-              <reason.icon className="mt-1 size-6 shrink-0 text-brand-400" />
-              <div>
-                <h3 className="font-display text-lg font-semibold text-white">{reason.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-300">{reason.description}</p>
-              </div>
+            <RevealOnScroll key={reason.title} delay={index * 0.05}>
+              <motion.div className="flex gap-4" whileHover={{ x: 4 }} transition={{ duration: 0.3, ease: "easeOut" }}>
+                <reason.icon className="mt-1 size-6 shrink-0 text-brand-400" />
+                <div>
+                  <h3 className="font-display text-lg font-semibold text-white">{reason.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-300">{reason.description}</p>
+                </div>
+              </motion.div>
             </RevealOnScroll>
           ))}
         </div>

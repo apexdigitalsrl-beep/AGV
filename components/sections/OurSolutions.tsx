@@ -1,4 +1,7 @@
+"use client";
+
 import { TrendingUp } from "lucide-react";
+import { motion } from "motion/react";
 
 import { RevealOnScroll } from "@/components/shared/RevealOnScroll";
 import { SectionHeading } from "@/components/shared/SectionHeading";
@@ -17,7 +20,11 @@ export function OurSolutions() {
         <div className="mt-16 divide-y divide-white/[0.06] border-y border-white/[0.06]">
           {solutions.map((solution, index) => (
             <RevealOnScroll key={solution.title} delay={index * 0.05}>
-              <div className="grid gap-6 py-10 lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-12">
+              <motion.div
+                className="grid gap-6 py-10 lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-12"
+                whileHover={{ x: 4 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
                 <div className="flex items-center gap-4">
                   <div className="glass-surface grid size-14 shrink-0 place-items-center rounded-2xl">
                     <solution.icon className="size-6 text-brand-400" />
@@ -39,7 +46,7 @@ export function OurSolutions() {
                   <TrendingUp className="mt-0.5 size-4 shrink-0 text-cyan-400" />
                   <p className="text-sm font-medium text-ink-200">{solution.impact}</p>
                 </div>
-              </div>
+              </motion.div>
             </RevealOnScroll>
           ))}
         </div>
