@@ -24,6 +24,7 @@ export function OurSolutions() {
                 className="grid gap-6 py-10 lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-12"
                 whileHover={{ x: 4 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
+                suppressHydrationWarning
               >
                 <div className="flex items-center gap-4">
                   <div className="glass-surface grid size-14 shrink-0 place-items-center rounded-2xl">

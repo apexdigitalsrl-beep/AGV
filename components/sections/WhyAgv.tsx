@@ -19,7 +19,7 @@ export function WhyAgv() {
         <div className="mt-14 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {whyReasons.map((reason, index) => (
             <RevealOnScroll key={reason.title} delay={index * 0.05}>
-              <motion.div className="flex gap-4" whileHover={{ x: 4 }} transition={{ duration: 0.3, ease: "easeOut" }}>
+              <motion.div className="flex gap-4" whileHover={{ x: 4 }} transition={{ duration: 0.3, ease: "easeOut" }} suppressHydrationWarning>
                 <reason.icon className="mt-1 size-6 shrink-0 text-brand-400" />
                 <div>
                   <h3 className="font-display text-lg font-semibold text-white">{reason.title}</h3>

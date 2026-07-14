@@ -21,7 +21,7 @@ export function BusinessProblems() {
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {businessProblems.map((problem, index) => (
             <RevealOnScroll key={problem.title} delay={index * 0.06}>
-              <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.3, ease: "easeOut" }}>
+              <motion.div whileHover={{ y: -6 }} transition={{ duration: 0.3, ease: "easeOut" }} suppressHydrationWarning>
                 <GlassCard className="h-full">
                   <problem.icon className="size-8 text-brand-400" />
                   <h3 className="mt-5 font-display text-lg font-semibold text-white">{problem.title}</h3>
