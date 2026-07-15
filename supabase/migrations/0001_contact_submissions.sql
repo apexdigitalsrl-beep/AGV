@@ -10,6 +10,10 @@ create table if not exists public.contact_submissions (
 
 alter table public.contact_submissions enable row level security;
 
+-- RLS bypasses table-level grants, not replaces them — service_role still
+-- needs base privileges on the table to read/write at all.
+grant all on public.contact_submissions to service_role;
+
 -- Deliberately no policies: RLS is enabled with a default-deny posture for
 -- every role (anon, authenticated). The contact form never talks to
 -- Supabase from the browser — the Next.js Server Action is the only writer,
