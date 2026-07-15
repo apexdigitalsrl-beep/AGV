@@ -117,7 +117,15 @@ export function RibbonsBackdrop() {
 export function LaserFlowBackdrop() {
   return (
     <BackgroundGate>
-      <LaserFlow color="#4a84ee" wispDensity={0.6} wispIntensity={2.5} fogIntensity={0.2} flowSpeed={0.25} decay={1.3} />
+      <LaserFlow
+        color="#4a84ee"
+        wispDensity={0.6}
+        wispIntensity={2.5}
+        fogIntensity={0.2}
+        flowSpeed={0.25}
+        decay={1.3}
+        horizontalBeamOffset={0}
+      />
     </BackgroundGate>
   );
 }
