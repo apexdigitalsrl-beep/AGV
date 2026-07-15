@@ -83,3 +83,21 @@ export type ContactFormState = {
   message?: string;
   fieldErrors?: Partial<Record<"name" | "email" | "company" | "message", string[]>>;
 };
+
+export type LeadPackage = "web-500" | "audit-web-700" | "system-1500" | "not-sure";
+
+export type LeadFormFieldName =
+  | "name"
+  | "company"
+  | "email"
+  | "phone"
+  | "industry"
+  | "businessService"
+  | "leadPackage"
+  | "taskAutomationValue";
+
+export type LeadFormState = {
+  status: "idle" | "success" | "error";
+  message?: string;
+  fieldErrors?: Partial<Record<LeadFormFieldName, string[]>>;
+};

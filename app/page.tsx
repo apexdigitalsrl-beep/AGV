@@ -7,6 +7,7 @@ import { FeaturedServices } from "@/components/sections/FeaturedServices";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { Hero } from "@/components/sections/Hero";
 import { Industries } from "@/components/sections/Industries";
+import { LeadQualification } from "@/components/sections/LeadQualification";
 import { OurSolutions } from "@/components/sections/OurSolutions";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { TechStack } from "@/components/sections/TechStack";
@@ -17,6 +18,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <LeadQualification />
       <SocialProof />
       <BusinessProblems />
       <OurSolutions />

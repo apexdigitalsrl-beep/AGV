@@ -30,6 +30,10 @@ export function buildWhatsAppUrl(message: string = contactInfo.whatsappDefaultMe
   return `https://wa.me/${contactInfo.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }
 
+export function buildMailtoUrl({ subject, body }: { subject: string; body: string }): string {
+  return `mailto:${contactInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 export const navLinks: NavLink[] = [
   { label: "Inicio", href: "#inicio" },
   { label: "Soluciones", href: "#soluciones" },
