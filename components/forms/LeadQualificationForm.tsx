@@ -7,6 +7,7 @@ import { submitLeadForm } from "@/app/actions/lead";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { plans } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { buildMailtoUrl, buildWhatsAppUrl, contactInfo } from "@/lib/site-config";
 import type { LeadFormState, LeadPackage } from "@/types";
@@ -14,24 +15,12 @@ import type { LeadFormState, LeadPackage } from "@/types";
 const initialState: LeadFormState = { status: "idle" };
 
 const packageOptions: { value: LeadPackage; label: string; price: string; description: string }[] = [
-  {
-    value: "web-500",
-    label: "Sitio web",
-    price: "USD 500",
-    description: "Landing o sitio corporativo de alta conversión.",
-  },
-  {
-    value: "audit-web-700",
-    label: "Auditoría + sitio web",
-    price: "USD 700",
-    description: "Diagnóstico de tu presencia digital más el sitio.",
-  },
-  {
-    value: "system-1500",
-    label: "Sistema de gestión + automatizaciones",
-    price: "USD 1.500",
-    description: "Panel a medida con procesos automatizados.",
-  },
+  ...plans.map((plan) => ({
+    value: plan.id,
+    label: plan.name,
+    price: plan.price,
+    description: plan.description,
+  })),
   {
     value: "not-sure",
     label: "Todavía no lo sé",

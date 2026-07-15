@@ -29,6 +29,7 @@ import type {
   FaqItem,
   FeaturedProject,
   Industry,
+  Plan,
   ProcessStep,
   Service,
   Solution,
@@ -205,6 +206,46 @@ export const services: Service[] = [
     description: "Tu sistema sigue funcionando y mejorando después de la entrega.",
     details: ["Soporte directo con el equipo", "Actualizaciones de seguridad", "Mejoras incrementales"],
     icon: LifeBuoy,
+  },
+];
+
+export const plans: Plan[] = [
+  {
+    id: "web-500",
+    name: "Sitio web",
+    price: "USD 500",
+    description: "Landing o sitio corporativo de alta conversión, listo para generar consultas desde el día uno.",
+    features: [
+      "Diseño a medida, no una plantilla",
+      "Optimizado para conversión y velocidad",
+      "Formulario de contacto integrado",
+      "SEO técnico básico",
+    ],
+  },
+  {
+    id: "audit-web-700",
+    name: "Auditoría + sitio web",
+    price: "USD 700",
+    description: "Diagnóstico completo de tu presencia digital, más el sitio que lo resuelve.",
+    features: [
+      "Todo lo del plan Sitio web",
+      "Auditoría de presencia digital y competencia",
+      "Plan de acción priorizado",
+      "Recomendaciones de conversión",
+    ],
+    highlighted: true,
+  },
+  {
+    id: "system-1500",
+    name: "Sistema de gestión + automatizaciones",
+    price: "USD 1.500",
+    description: "Panel a medida para tu operación real, con procesos automatizados.",
+    features: [
+      "Panel de administración a medida",
+      "Automatización con WhatsApp e IA",
+      "Integraciones con tus herramientas actuales",
+      "Soporte continuo post-entrega",
+    ],
   },
 ];
 

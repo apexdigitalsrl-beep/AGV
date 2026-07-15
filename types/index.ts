@@ -86,6 +86,15 @@ export type ContactFormState = {
 
 export type LeadPackage = "web-500" | "audit-web-700" | "system-1500" | "not-sure";
 
+export interface Plan {
+  id: Exclude<LeadPackage, "not-sure">;
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  highlighted?: boolean;
+}
+
 export type LeadFormFieldName =
   | "name"
   | "company"

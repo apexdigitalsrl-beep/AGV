@@ -9,9 +9,9 @@ import { Hero } from "@/components/sections/Hero";
 import { Industries } from "@/components/sections/Industries";
 import { LeadQualification } from "@/components/sections/LeadQualification";
 import { OurSolutions } from "@/components/sections/OurSolutions";
+import { Plans } from "@/components/sections/Plans";
 import { SocialProof } from "@/components/sections/SocialProof";
 import { TechStack } from "@/components/sections/TechStack";
-import { Testimonials } from "@/components/sections/Testimonials";
 import { WhyAgv } from "@/components/sections/WhyAgv";
 
 export default function Home() {
@@ -28,7 +28,7 @@ export default function Home() {
       <WhyAgv />
       <TechStack />
       <FeaturedProjects />
-      <Testimonials />
+      <Plans />
       <Faq />
       <FinalCta />
       <Contact />
